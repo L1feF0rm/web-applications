@@ -1,0 +1,32 @@
+name: NodeJS with Webpack
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x]
+        os: [ubuntu-22.04, ubuntu-latest, ubuntu-18.04]
+
+    runs-on: ${{ matrix.os }}
+    env:
+      NODE_VERSION: ${{ matrix.node-version }}
+      OS_VERSION: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Build
+      run: |
+        node --version
+        npm --version
