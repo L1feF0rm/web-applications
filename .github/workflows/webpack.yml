@@ -48,7 +48,7 @@ jobs:
         jq --version
         curl --version
         file --version
-        ssh --version
+        ssh -V
         wget --version
         upx --version
         bzip2 --version
