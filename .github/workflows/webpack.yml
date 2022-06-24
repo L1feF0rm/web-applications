@@ -36,7 +36,7 @@ jobs:
         python --version
         pip --version
         perl --version
-        minikube --version
+        minikube -V
         parcel --version
         openssl --version
         jq --version
