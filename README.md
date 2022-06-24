@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages 2
+## Welcome to GitHub Pages
 
 You can use the [editor on GitHub](https://github.com/L1feF0rm/web-applications/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
 
