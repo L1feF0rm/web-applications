@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>alpine</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0/css/bulma.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/faker@5/dist/faker.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.js"></script>
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
+    <script>
+        class Custom {
+            constructor(name = '') {
+                this.name = name;
+                return console.log('constructor custom', this.name);
+            }
+
+            destroy() {
+                return console.log('destroy custom', this.name);
+            }
+        }
+        const fr = new FinalizationRegistry(console.info);
+        document.addEventListener('alpine:init', function () {
+            console.log('Alpine.version', Alpine.version);
+            Alpine.data('main', function () {
+                return {
+                    tab: 0,
+                    tabs: ['Form', 'Cards', 'Options', 'Extra'],
+                    username: 'killa',
+                    password: '123456',
+                    length: 2,
+                    list: Array.from({length: 4}, faker.helpers.createCard)
+                };
+            });
+            Alpine.data('article', function (value = 0) {
+                return {
+                    value,
+                    custom: null,
+                    init() {
+                        console.log('init component', this.item.name);
+                        this.custom = new Custom(this.item.name);
+                        fr.register(this, `finalize component ${this.item.name}`);
+                        fr.register(this.custom, `finalize custom ${this.item.name}`);
+                    },
+                    destroy() {
+                        console.log('destroy component', this.item.name);
+                        this.custom.destroy();
+                        this.custom = null;
+                    }
+                };
+            });
+        });
+    </script>
+</head>
+<body>
+    <main x-cloak x-data="main" class="container is-fluid">
+        <article class="panel">
+            <p class="panel-heading">alpine</p>
+            <p class="panel-tabs">
+                <template x-for="(text, index) in tabs">
+                    <a x-text="text" :class="{'is-active': tab === index}" @click="tab = index"></a>
+                </template>
+            </p>
+            <div class="panel-block">
+                <div class="container">
+                    <template x-if="tab === 0">
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Length</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <p class="control is-expanded has-icons-left">
+                                        <input x-model.lazy="length" type="number" min="0" max="8" class="input" placeholder="length">
+                                        <span class="icon is-left">
+                                            <i class="fas fa-list-ol"></i>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                    <template x-if="tab === 1">
+                        <ul>
+                            <template x-for="i in tabs.length">
+                                <li x-text="i"></li>
+                            </template>
+                        </ul>
+                    </template>
+                    <template x-if="tab === 2">
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Username</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <p class="control is-expanded has-icons-left">
+                                        <input x-model.lazy="username" type="text" class="input" placeholder="username">
+                                        <span class="icon is-left">
+                                            <i class="fas fa-user"></i>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="field-label is-normal">
+                                <label class="label">Password</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <p class="control is-expanded has-icons-left">
+                                        <input x-model.lazy="password" type="password" class="input" placeholder="password">
+                                        <span class="icon is-left">
+                                            <i class="fas fa-key"></i>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                    <template x-if="tab === 3">
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Username</label>
+                            </div>
+                            <p class="control is-expanded has-icons-left">
+                                <input x-model.lazy="username" type="text" class="input" placeholder="username">
+                                <span class="icon is-left">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </p>
+                            <div class="field-label is-normal">
+                                <label class="label">Password</label>
+                            </div>
+                            <p class="control is-expanded has-icons-left">
+                                <input x-model.lazy="password" type="password" class="input" placeholder="password">
+                                <span class="icon is-left">
+                                    <i class="fas fa-key"></i>
+                                </span>
+                            </p>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </article>
+        <div class="columns">
+            <template x-for="item in list.slice(0, length)" :key="item.email">
+                <div class="column card">
+                    <div class="card-image">
+                        <figure class="image is-4by3">
+                            <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-left">
+                                <figure class="image is-48x48">
+                                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <p x-text="item.name" class="title is-4"></p>
+                                <p x-text="item.email" class="subtitle is-6"></p>
+                            </div>
+                        </div>
+                        <div class="content">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Phasellus nec iaculis mauris. <a>@bulmaio</a>.
+                            <a href="#">#css</a> <a href="#">#responsive</a>
+                            <br>
+                            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                            <article x-data="article">
+                                <span x-text="item.name"></span>
+                                <q x-text="item.email"></q>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </main>
+</body>
+</html>
