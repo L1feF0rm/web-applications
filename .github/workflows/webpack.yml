@@ -27,24 +27,4 @@ jobs:
           npm --version
           php --version
           composer --version
-          python --version
-          pip --version
-          perl --version
           parcel --version
-          rustc --version
-          cargo --version
-          git --version
-          svn --version
-          sqlite3 --version
-          go version
-          minikube version
-          openssl version
-          jq --version
-          curl --version
-          file --version
-          ssh -V
-          wget --version
-          upx --version
-          bzip2 --version
-          ip -V
-          mediainfo --version
