@@ -44,7 +44,7 @@ jobs:
         sqlite3 --version
         go version
         minikube version
-        openssl --version
+        openssl version
         jq --version
         curl --version
         file --version
