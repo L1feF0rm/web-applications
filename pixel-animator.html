@@ -9,9 +9,7 @@
           content="default-src 'none';
             script-src 'unsafe-inline';
             script-src-elem 'unsafe-inline' https://cdn.jsdelivr.net;
-            style-src 'unsafe-hashes' 'sha256-ZD0chCyBaNHl+4UwQHJIHGoYhKwMeyCXGgJTKW5/67E=' 'sha256-ICa0DhwZQJsOd/Rn0N8H6FdQ71GfNL+op2zhAQ+Y4mM=';
-            style-src-elem 'unsafe-inline';
-            connect-src http://www.focus-news.net">
+            style-src-elem 'unsafe-inline'">
     <script src="https://cdn.jsdelivr.net/npm/pixel-animator@1.1.14/main.js"
             integrity="sha256-5rGy5l2hQZs6VMReze7oXoNq7TrY1GTfKFSDwMeb8L0="
             crossorigin="anonymous">
@@ -28,21 +26,7 @@
             justify-content: center;
         }
     </style>
-    <script type="module">
-        async function rss(url = 'http://www.focus-news.net/RSS/channel_-2.xml', encoding = 'windows-1251', xpath = '//channel/item/title') {
-            let node;
-            const data = [];
-            const response = await fetch(url, {mode: 'no-cors'});
-            const buffer = await response.arrayBuffer();
-            const body = new TextDecoder(encoding).decode(buffer);
-            const xml = new DOMParser().parseFromString(body, 'text/xml');
-            const nodes = new XPathEvaluator().createExpression(xpath).evaluate(xml);
-            while (node = nodes.iterateNext()) data.push(node.textContent);
-            return data;
-        }
-
-        rss().then(console.log);
-
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
             PixelAnimator(null, document.querySelector('main'));
         });
