@@ -13,44 +13,43 @@ jobs:
       matrix:
         node-version: [16.x]
         os: [ubuntu-22.04]
-
     runs-on: ${{ matrix.os }}
     env:
       NODE_VERSION: ${{ matrix.node-version }}
       OS_VERSION: ${{ matrix.os }}
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    - name: Build
-      run: |
-        node --version
-        npm --version
-        php --version
-        composer --version
-        python --version
-        pip --version
-        perl --version
-        parcel --version
-        rustc --version
-        cargo --version
-        git --version
-        svn --version
-        sqlite3 --version
-        go version
-        minikube version
-        openssl version
-        jq --version
-        curl --version
-        file --version
-        ssh -V
-        wget --version
-        upx --version
-        bzip2 --version
-        ip -V
-        mediainfo --version
+      - name: Build
+        run: |
+          node --version
+          npm --version
+          php --version
+          composer --version
+          python --version
+          pip --version
+          perl --version
+          parcel --version
+          rustc --version
+          cargo --version
+          git --version
+          svn --version
+          sqlite3 --version
+          go version
+          minikube version
+          openssl version
+          jq --version
+          curl --version
+          file --version
+          ssh -V
+          wget --version
+          upx --version
+          bzip2 --version
+          ip -V
+          mediainfo --version
