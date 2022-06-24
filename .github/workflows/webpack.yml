@@ -36,16 +36,16 @@ jobs:
         python --version
         pip --version
         perl --version
-        minikube -V
         parcel --version
-        openssl --version
-        jq --version
-        git --version
-        svn --version
         rustc --version
         cargo --version
+        git --version
+        svn --version
         sqlite3 --version
         go version
+        minikube version
+        openssl --version
+        jq --version
         curl --version
         file --version
         ssh --version
