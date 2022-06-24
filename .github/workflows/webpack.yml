@@ -52,6 +52,6 @@ jobs:
         wget --version
         upx --version
         bzip2 --version
-        ip --version
+        ip -V
         nc --version
         mediainfo --version
