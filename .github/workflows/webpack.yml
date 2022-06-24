@@ -53,5 +53,4 @@ jobs:
         upx --version
         bzip2 --version
         ip -V
-        nc -v
         mediainfo --version
