@@ -7,14 +7,13 @@
           content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy"
           content="default-src 'none';
-            script-src 'unsafe-inline';
-            script-src-elem 'unsafe-inline' https://cdn.jsdelivr.net;
+            script-src 'unsafe-eval';
+            script-src-elem https://cdn.jsdelivr.net;
             style-src-elem 'unsafe-inline'">
-    <script src="https://cdn.jsdelivr.net/npm/petite-vue@0.4.1/dist/petite-vue.iife.js"
+    <script defer init src="https://cdn.jsdelivr.net/npm/petite-vue@0.4.1/dist/petite-vue.iife.js"
             integrity="sha256-d0u46IsJk2JGpX8N/tiKN1JYqCNbiTVhyWiAQR2rxNU="
             crossorigin="anonymous">
     </script>
-    <script src="https://unpkg.com/petite-vue" defer init></script>
 </head>
 <body>
     <main v-cloak v-scope="{value: 'hello'}">
