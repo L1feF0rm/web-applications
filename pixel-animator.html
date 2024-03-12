@@ -19,7 +19,7 @@
             color-scheme: light, dark;
         }
         body {
-            margin: 0;
+            margin: auto;
             height: 100vh;
             display: flex;
             align-items: center;
@@ -31,18 +31,10 @@
             PixelAnimator(null, document.querySelector('main'));
         });
 
-        window.addEventListener('load', ev => console.log('window@load', ev));
-        window.addEventListener('hashchange', ev => console.log('window@hashchange', ev));
-        window.addEventListener('visibilitychange', ev => console.log('window@visibilitychange', ev));
-        window.addEventListener('resize', ev => console.log('window@resize', ev));
-        document.addEventListener('DOMContentLoaded', ev => console.log('document@DOMContentLoaded', ev));
         document.addEventListener('scroll', ev => console.log('document@scroll', ev));
-        screen.orientation.addEventListener('change', ev => console.log('screen.orientation@change', ev));
-        visualViewport.addEventListener('resize', ev => console.log('visualViewport@resize', ev));
-        visualViewport.addEventListener('scroll', ev => console.log('visualViewport@scroll', ev));
     </script>
 </head>
-<body onload="console.log('body@load', event)">
+<body>
     <main></main>
 </body>
 </html>
