@@ -1,4 +1,4 @@
-## Simple Web experiments running on GitHub Pages
+## Simple Web experiments running on GitHub Pages, using CDN with CSP
 
 * [Alpine](https://L1feF0rm.github.io/web-applications/alpine.html)
 * [Petite Vue](https://L1feF0rm.github.io/web-applications/petite-vue.html)
