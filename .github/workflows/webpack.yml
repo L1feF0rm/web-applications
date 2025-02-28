@@ -9,15 +9,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: [20.x]
+        node-version: [22.x]
         os: [ubuntu-24.04]
     runs-on: ${{ matrix.os }}
     env:
       NODE_VERSION: ${{ matrix.node-version }}
       OS_VERSION: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
