@@ -17,13 +17,14 @@ jobs:
       OS_VERSION: ${{ matrix.os }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Setup Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Build
+      - name: Run commands
         run: |
+          lsb_release -a
           node --version
           npm --version
           php --version
